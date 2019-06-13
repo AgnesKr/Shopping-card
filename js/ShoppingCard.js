@@ -1,5 +1,6 @@
 function ShoppingCard() {
     this.products = []
+    this.summary = new Summary()
 
     this.addProduct = function (product) {
         this.products.push({
@@ -101,10 +102,10 @@ function ShoppingCard() {
                 diff += 1
             }
         }
-        delivery.setDate(delivery.setDate() + diff)
+        delivery.setDate(delivery.getDate() + diff)
         let deliveryDate = `${delivery.getFullYear()}-${delivery.getMonth() + 1 < 10 ? "0" + (delivery.getMonth() + 1): delivery.getMonth() + 1 }-${delivery.getDate() < 10 ? "0" + delivery.getDate(): delivery.getDate()}`
-        console.log(deliveryDate)
-
+        
+        this.summary.openWindow(deliveryDate)
 
     }
 

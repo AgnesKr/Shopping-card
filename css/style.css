@@ -70,7 +70,50 @@ td i{
     margin-right: auto;
     width: 20px;
 }
-
 .summary {
     padding: 2rem 3rem;
+}
+
+.window {
+    position: absolute;
+    z-index: 5;
+    width: 100%;
+    max-width: 800px;
+    visibility: hidden;
+    background: white;
+    border: 1px solid black;
+    border-radius: 10px;;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    padding: 3rem 2rem;
+}
+
+.dark {
+    width: 100%;
+    height: 100%;
+    background: black;
+    opacity: 0.7;
+    position: absolute;
+    visibility: hidden;
+    z-index: 4;
+}
+
+.window label{
+    margin-top: 25px;
+    margin-bottom: 5px;
+    width: 120px;
+}
+
+.window input:last-of-type { 
+    margin-bottom: 35px;
+}
+
+.window h5 {
+    margin-bottom: 35px;
+    border-top: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
 }

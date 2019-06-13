@@ -50,7 +50,6 @@ document.querySelector(".confirm").addEventListener("click", function (e) {
 })
 
 let radios = document.querySelectorAll("[name=delivery]")
-
 for (let i = 0; i < radios.length; i++) {
     radios[i].addEventListener("change", function() {
         shoppingCard.createSummary()
