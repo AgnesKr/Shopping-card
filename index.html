@@ -73,20 +73,24 @@
             </div>
             <div class="window-content">
                 <label>Ulica</label>
-                <input type="text">
+                <input type="text" name="street">
+                <p class="error" name="street"></p>
                 <br />
                 <label>Number domu</label>
-                <input type="text">
+                <input type="text" name="houseNumber">
+                <p class="error" name="houseNumber"></p>
                 <br />
                 <label>Kod pocztowy</label>
-                <input type="text">
+                <input type="text"  name="zipCode" class="window-content-zipcode" value="__-___">
+                <p class="error" name="zipCode" id="window-error-zipcode"></p>
                 <br />
                 <label>telefon</label>
-                <input type="text">
+                <input type="text" name="phone" class="window-content-phone">
+                <p class="error" name="phone" id="window-error-phone"></p>
             </div>
             <h5></h5>
             <button class="window-close">Close</button>
-            <button>Zatwierdź</button>
+            <button class="submit">Zatwierdź</button>
         </h5>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>

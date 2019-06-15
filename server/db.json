@@ -1,5 +1,38 @@
 {
-  "orders": [],
+  "orders": [
+    {
+      "transactionDate": "2019-06-14",
+      "deliveryDate": "2019-06-18",
+      "products": [
+        {
+          "name": " Samsung Galaxy S8",
+          "price": "1900",
+          "image": "https://i.wpimg.pl/315x0/m.komorkomania.pl/samsung-galaxy-s8-00be797896460d.jpg",
+          "colour": "blue",
+          "size": "XS",
+          "id": "1",
+          "quantity": "21",
+          "numberOfUnits": 2
+        },
+        {
+          "name": "Huawei P10",
+          "price": "1600",
+          "image": "https://images-na.ssl-images-amazon.com/images/I/41LCP0Yt-ML.jpg",
+          "colour": "black",
+          "size": "XS",
+          "id": "2",
+          "quantity": "15",
+          "numberOfUnits": 1
+        }
+      ],
+      "price": 5419.99,
+      "street": "asasdasd",
+      "houseNumber": "12",
+      "zipCode": "12-121",
+      "phone": "456789012",
+      "id": 1
+    }
+  ],
   "products": [
     {
       "id": 0,

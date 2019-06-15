@@ -117,3 +117,9 @@ td i{
     padding-top: 1rem;
     padding-bottom: 1rem;
 }
+
+.error {
+    color: red;
+    display: inline;
+    margin-left: 20px;
+}

@@ -1,3 +1,9 @@
+String.prototype.replaceAt=function(index, replacement) {
+    return this.substr(0, index) + replacement+ this.substr(index + replacement.length);
+}
+
+//"abcdef" -> "abbdef"
+
 let shoppingCard = new ShoppingCard()
 
 
@@ -56,3 +62,9 @@ for (let i = 0; i < radios.length; i++) {
     })
    
 }
+
+
+
+let str = "abcdef"
+str = str.replaceAt(2,"b")
+console.log(str)

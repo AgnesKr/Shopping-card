@@ -105,7 +105,7 @@ function ShoppingCard() {
         delivery.setDate(delivery.getDate() + diff)
         let deliveryDate = `${delivery.getFullYear()}-${delivery.getMonth() + 1 < 10 ? "0" + (delivery.getMonth() + 1): delivery.getMonth() + 1 }-${delivery.getDate() < 10 ? "0" + delivery.getDate(): delivery.getDate()}`
         
-        this.summary.openWindow(deliveryDate)
+        this.summary.openWindow(deliveryDate, transactionDate, this.products, price)
 
     }
 
