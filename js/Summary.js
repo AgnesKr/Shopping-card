@@ -10,8 +10,10 @@ function Summary() {
             windowDiv.style.visibility = "visible"
             windowDiv.style.left = window.innerWidth / 2 - windowDiv.offsetWidth / 2 +  "px"
             windowDiv.style.top = window.innerHeight / 2 - windowDiv.offsetHeight / 2 - 50 + "px"
+            console.log(document.body.scrollHeight)
             document.querySelector(".dark").style.visibility = "visible"
-            document.querySelector(".window h5").innerHTML = "Data dostawy " + deliveryDate
+            document.querySelector(".dark").style.height = document.body.scrollHeight + "px"
+            document.querySelector(".window h5").innerHTML = "Delivery date " + deliveryDate
             document.querySelector(".window-close").addEventListener("click",() => {
                 this.isOpen = false
                 this.phoneNumber = ""
@@ -38,14 +40,33 @@ function Summary() {
                         }
                     }
                 } else if(e.key == "Backspace"){
-                    for(let i = this.zipCode.length - 1; i >= 0 ; i--) {
-                        if(this.zipCode[i] != "_" && this.zipCode[i] != "-") {
-                            this.zipCode = this.zipCode.replaceAt(i, "_")
-                            break
+                    let input = document.querySelector(".window-content-zipcode")
+                    if(input.selectionStart == input.selectionEnd) {
+                        for(let i = 0; i < this.zipCode.length; i++) {
+                            if(i == input.selectionStart - 1 && i != 2) {
+                                this.zipCode = this.zipCode.replaceAt(i, "_")
+                            }
+                        }
+                    }else {
+                        for(let i = 0 ; i < this.zipCode.length; i++) {
+                            for(let k = input.selectionStart; k < input.selectionEnd; k++) {
+                                if(i != 2 && i == k) {
+                                    this.zipCode = this.zipCode.replaceAt(i, "_")
+                                }
+                            }
                         }
                     }
                 }
                 document.querySelector(".window-content-zipcode").value = this.zipCode
+                let input  = document.querySelector(".window-content-zipcode")
+                
+                for(let i = 0; i < input.value.length; i++) {
+                    if(i == 0 || input.value[i] != "_" && input.value[i] != "-") {
+                        console.log(input.value[i])
+                        input.selectionStart = i + 1
+                        input.selectionEnd = i + 1
+                    }
+                }
                 e.preventDefault()
             })
 
@@ -58,6 +79,8 @@ function Summary() {
                 if(e.key != "Backspace") {
                     this.phoneNumber += e.key
                 } else if(e.key == "Backspace"){
+                    let input = document.querySelector(".window-content-phone")
+                    console.log(input.selectionStart,input.selectionEnd)
                     this.phoneNumber = this.phoneNumber.substr(0,this.phoneNumber.length - 1)
                     console.log(this.phoneNumber)
                 }
@@ -65,7 +88,7 @@ function Summary() {
                 if(this.phoneNumber.length > 9) {
                     e.preventDefault()
                     this.phoneNumber = this.phoneNumber.substr(0,this.phoneNumber.length - 1)
-                    document.querySelector("#window-error-phone").innerHTML = "Maksymalna liczba znaków to 9"
+                    document.querySelector("#window-error-phone").innerHTML = "The maximum number of characters is 9"
                 } else {
                     document.querySelector("#window-error-phone").innerHTML = ""
                 }
@@ -80,7 +103,7 @@ function Summary() {
                     if(inputs[i].value.length == 0 || inputs[i].value == "__-___") {
                         for(let k = 0 ; k < errorsP.length; k++) {
                             if(errorsP[k].getAttribute("name") ==  inputs[i].getAttribute("name")) {
-                                errorsP[k].innerHTML = "Pole jest wymagane"
+                                errorsP[k].innerHTML = "The field is required"
                                 isError = true
                             }
                         }

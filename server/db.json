@@ -7,7 +7,7 @@
         {
           "name": " Samsung Galaxy S8",
           "price": "1900",
-          "image": "https://i.wpimg.pl/315x0/m.komorkomania.pl/samsung-galaxy-s8-00be797896460d.jpg",
+          "image": "img/Samsung Galaxy S8.jpg",
           "colour": "blue",
           "size": "XS",
           "id": "1",
@@ -17,7 +17,7 @@
         {
           "name": "Huawei P10",
           "price": "1600",
-          "image": "https://images-na.ssl-images-amazon.com/images/I/41LCP0Yt-ML.jpg",
+          "image": "img/Huawei P10.jpg",
           "colour": "black",
           "size": "XS",
           "id": "2",
@@ -31,12 +31,23 @@
       "zipCode": "12-121",
       "phone": "456789012",
       "id": 1
+    },
+    {
+      "transactionDate": "2019-06-15",
+      "deliveryDate": "2019-06-21",
+      "products": [],
+      "price": 16.99,
+      "street": "ul. Jakaś tam 213",
+      "houseNumber": "123",
+      "zipCode": "12-222",
+      "phone": "666183790",
+      "id": 2
     }
   ],
   "products": [
     {
       "id": 0,
-      "image": "https://ecsmedia.pl/c/apple-iphone-8-plus-64-gb-w-iext52516792.jpg",
+      "image": "img/Apple Iphone 8 Plus.jpg",
       "name": "Iphone 8 Plus",
       "quantity": 13,
       "price": 3000,
@@ -45,7 +56,7 @@
     },
     {
       "id": 1,
-      "image": "https://i.wpimg.pl/315x0/m.komorkomania.pl/samsung-galaxy-s8-00be797896460d.jpg",
+      "image": "img/Samsung Galaxy S8.jpg",
       "name": " Samsung Galaxy S8",
       "quantity": 21,
       "price": 1900,
@@ -54,7 +65,7 @@
     },
     {
       "id": 2,
-      "image": "https://images-na.ssl-images-amazon.com/images/I/41LCP0Yt-ML.jpg",
+      "image": "img/Huawei P10.jpg",
       "name": "Huawei P10",
       "quantity": 15,
       "price": 1600,
@@ -63,7 +74,7 @@
     },
     {
       "id": 3,
-      "image": "https://static.bhphoto.com/images/images500x500/sony_1316_5144_xperia_xz3_64gb_smartphone_1540225342000_1436752.jpg",
+      "image": "img/Sony Xperia XZ3.jpg",
       "name": "Sony Xperia XZ3",
       "quantity": 18,
       "price": 2400,

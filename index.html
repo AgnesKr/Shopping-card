@@ -11,94 +11,89 @@
         integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/style.css">
-    
 </head>
 
 <body>
     <div class="wrapper">
         <nav class="navbar navbar-light bg-light">
-            <span class="navbar-brand mb-0 h1">Navbar</span>
+            <span class="navbar-brand mb-0 h1" style="font-size: 22px">PHONE SHOP</span>
             <div class="shoppingcard">
                 <p><i class="fas fa-shopping-cart fa-2x"></i><span class="countItems">0</span></p>
-                <div>
+            <div>
         </nav>
-        <div class="container_photos">
-            
-        </div>
-        <div class="container" style="margin-top: 2rem;">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">Image</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Quantity</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Colour</th>
-                        <th scope="col">Size</th>
-                        <th scope="col">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    
-                </tbody>
-            </table>
+        <div class="container_photos container"></div>
+        <div class="container">
+            <div class="table">
+                <div class="range head">
+                    <div class="column">Image</div>
+                    <div class="column">Name</div>
+                    <div class="column">Quantity</div>
+                    <div class="column">Price</div>
+                    <div class="column">Colour</div>
+                    <div class="column">Size</div>
+                    <div class="column">Action</div>
+                </div>
+                <div class="tbody"></div>
+            </div>
             <hr />
             <br>
             <input type="radio" name="delivery" checked value='{"price": 16.99, "days":4}''>
-            <label>Pocztex - 16,99zł</label>
+            <label>InPost - 9,99 PLN</label>
             <br>
-            <input type="radio" name="delivery"  value='{"price": 9.99, "days":3}'>
-            <label>INPost - 9,99zł</label>
+            <input type="radio" name="delivery"  value=' {"price": 9.99, "days" :3}'>
+            <label>Pocztex - 16,99 PLN</label>
             <br>
-            <input type="radio" name="delivery"   value='{"price": 19.99, "days":2}'>
-            <label>DHL - 19,99zł</label>
+            <input type="radio" name="delivery" value='{"price": 19.99, "days":2}'>
+            <label>DHL - 19,99 PLN</label>
             <br>
-            <input type="radio" name="delivery"  value='{"price": 30, "days":2}'>
-            <label>List priorytetowy - 30,00zł</label>
+            <input type="radio" name="delivery" value='{"price": 30, "days":2}'>
+            <label>Priority mail - 30,00 PLN</label>
             <div class="summary">
-                <h2>Razem: 16,99zł</h2>
+                <h2>Total: 16,99 PLN</h2>
                 <hr />
-                <h5>Koszt dostawy - 16,99zł</h5>
+                <h5>Delivery - 16,99 PLN</h5>
                 <br>
             </div>
             <hr />
-            <button class="confirm">Zamów</button>
+            <button class="confirm">Order</button>
         </div>
         <div>
         </div>
         <div class="dark"></div>
         <div class="window">
             <div class="window-header">
-                <h3>Podsumowanie</h3>
+                <h3>Summary</h3>
             </div>
             <div class="window-content">
-                <label>Ulica</label>
+                <label>Street</label>
                 <input type="text" name="street">
                 <p class="error" name="street"></p>
                 <br />
-                <label>Number domu</label>
+                <label>House number</label>
                 <input type="text" name="houseNumber">
                 <p class="error" name="houseNumber"></p>
                 <br />
-                <label>Kod pocztowy</label>
-                <input type="text"  name="zipCode" class="window-content-zipcode" value="__-___">
+                <label>ZIP code</label>
+                <input type="text" name="zipCode" class="window-content-zipcode" value="__-___">
                 <p class="error" name="zipCode" id="window-error-zipcode"></p>
                 <br />
-                <label>telefon</label>
+                <label>Phone</label>
                 <input type="text" name="phone" class="window-content-phone">
                 <p class="error" name="phone" id="window-error-phone"></p>
             </div>
-            <h5></h5>
+            <h5>
+           
+            </h5>
             <button class="window-close">Close</button>
-            <button class="submit">Zatwierdź</button>
-        </h5>
-    </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script src="./js/Summary.js"></script>
-    <script src="./js/CardProduct.js"></script>
-    <script src="./js/ShoppingCard.js"></script>
-    <script src="./js/main.js"></script>
+            <button class="submit">Submit</button>
+        </div>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <script src="./js/Summary.js"></script>
+        <script src="./js/CardProduct.js"></script>
+        <script src="./js/ShoppingCard.js"></script>
+        <script src="./js/main.js"></script>
 </body>
 
 </html>

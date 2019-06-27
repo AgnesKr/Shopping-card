@@ -7,32 +7,35 @@ function ShoppingCard() {
             ...product,
             numberOfUnits: 1
         }) //id,name,image... + numberOfUnits
-        document.querySelector("tbody").innerHTML +=
-            `
-        <tr>
-            <td>
-                <img src="${product.image}"/>
-            </td>
-            <td>
-                ${product.name}
-            </td>
-            <td>
-                <input class="input-quantity" index="${product.id}" type="number" value="1" min="1" max="${product.quantity}"/>
-            </td>
-            <td>
-                ${product.price}
-            </td>
-            <td>
-                ${product.colour}
-            </td>
-            <td>
-                ${product.size}
-            </td>
-            <td>
-                <i class="fas fa-trash delete" index="${product.id}"></i>
-            </td>
-        </tr>
+        document.querySelector(".tbody").innerHTML +=
         `
+        <div class="range">
+            <div class="column image">
+                <img src="${product.image}"/>
+            </div>
+            <div class="range wrap">
+                <div class="column">
+                    ${product.name}
+                </div>
+                <div class="column">
+                    <input class="input-quantity" index="${product.id}" type="number" value="1" min="1" max="${product.quantity}"/>
+                </div >
+                <div class="column">
+                    ${product.price}
+                </div>
+                <div class="column">
+                    ${product.colour}
+                </div>
+                <div class="column">
+                    ${product.size}
+                </div>
+                <div class="column">
+                    <i class="fas fa-trash delete" index="${product.id}"></i>
+                </div>
+            </div>
+        </div>
+        `
+        onResize()
         document.querySelector(".countItems").innerHTML = this.products.length
         this.createSummary()
     }
@@ -73,10 +76,10 @@ function ShoppingCard() {
             if (radios[i].checked) {
                 let price = JSON.parse(radios[i].getAttribute("value")).price
                 summary += price
-                document.querySelector(".summary h5").innerHTML = `Koszt dostawy - ${price} zł`
+                document.querySelector(".summary h5").innerHTML = `Delivery - ${price} PLN`
             }
         }
-        document.querySelector(".summary h2").innerHTML = `Razem: ${summary} zł`
+        document.querySelector(".summary h2").innerHTML = `Total: ${summary} PLN`
         return summary
     }
 
@@ -97,16 +100,14 @@ function ShoppingCard() {
         //delivery -> data dostarczenia
         //date < delivery -> true
         let diff = 0
-        for(let i = date; i <= delivery; i.setDate(i.getDate() + 1)) {
-            if(i.getDay() == 0 || i.getDay() == 6) {
+        for (let i = date; i <= delivery; i.setDate(i.getDate() + 1)) {
+            if (i.getDay() == 0 || i.getDay() == 6) {
                 diff += 1
             }
         }
         delivery.setDate(delivery.getDate() + diff)
         let deliveryDate = `${delivery.getFullYear()}-${delivery.getMonth() + 1 < 10 ? "0" + (delivery.getMonth() + 1): delivery.getMonth() + 1 }-${delivery.getDate() < 10 ? "0" + delivery.getDate(): delivery.getDate()}`
-        
+
         this.summary.openWindow(deliveryDate, transactionDate, this.products, price)
-
     }
-
 }
