@@ -40,32 +40,7 @@ axios({
         )
     }
     document.querySelector(".container_photos").innerHTML += `<hr style="width: 100%; margin-bottom: 0">`
-    let productsH3 = document.querySelectorAll(".product h3"),
-    productsIMG = document.querySelectorAll(".product img"),
-    productsH5 = document.querySelectorAll(".product h5"),
-    maxHeight = 0
-    console.log(productsH3,productsIMG,productsH5)
-    productsH3.forEach((value) => {
-        if(value.getBoundingClientRect().height > maxHeight) {
-            maxHeight = value.getBoundingClientRect().height
-        }
-        
-    })
-
-    let maxHeightImg = 0
-    productsIMG.forEach((value) => {
-        if(value.getBoundingClientRect().height > maxHeightImg) {
-            maxHeightImg = value.getBoundingClientRect().height
-        }
-        value.style.top = maxHeight + 30 + "px"
-    })
-
-    productsH5.forEach((value) => {
-        value.style.top = maxHeight + 30 + maxHeightImg + 20 + "px"
-    })
-
-    console.log(maxHeight,maxHeightImg)
-
+    onResize()
 }).catch((err) => {
     console.log(err)
 })
@@ -110,6 +85,32 @@ function onResize(e) {
             tbodyElements[i].style.width = tbodyWidth / 7 + "px"
         }
     }
+    let productsH3 = document.querySelectorAll(".product h3"),
+    productsIMG = document.querySelectorAll(".product img"),
+    productsH5 = document.querySelectorAll(".product h5"),
+    maxHeight = 0
+    console.log(productsH3,productsIMG,productsH5)
+    productsH3.forEach((value) => {
+        if(value.getBoundingClientRect().height > maxHeight) {
+            maxHeight = value.getBoundingClientRect().height
+        }
+        
+    })
+
+    let maxHeightImg = 0
+    productsIMG.forEach((value) => {
+        if(value.getBoundingClientRect().height > maxHeightImg) {
+            maxHeightImg = value.getBoundingClientRect().height
+        }
+        value.style.top = maxHeight + 30 + "px"
+    })
+
+    productsH5.forEach((value) => {
+        value.style.top = maxHeight + 30 + maxHeightImg + 20 + "px"
+    })
+
+    console.log(maxHeight,maxHeightImg)
+
 }
 
 function onScroll(e) {

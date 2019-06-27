@@ -141,5 +141,6 @@ function close() {
         inputs[i].value = ""
     }
     document.querySelector(".dark").style.visibility = "hidden"
+    document.querySelector(".dark").style.height = 0 + "px"
     document.querySelector(".window").style.visibility = "hidden"
 }
