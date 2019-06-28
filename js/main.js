@@ -102,7 +102,12 @@ function onResize(e) {
     let maxHeightImg = 0
     productsIMG.forEach((value) => {
         value.style.top = maxHeight + 50 + "px"
-        value.style.width = value.parentElement.children[0].getBoundingClientRect().width + 'px'
+        if(window.innerWidth > 600) {
+            value.style.width = value.parentElement.children[0].getBoundingClientRect().width + 'px'
+        } else {
+            value.style.width = "75%"
+        }
+       
         if(value.getBoundingClientRect().height > maxHeightImg) {
             maxHeightImg = value.getBoundingClientRect().height
         }
