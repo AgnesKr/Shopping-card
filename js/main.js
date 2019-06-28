@@ -40,7 +40,9 @@ axios({
         )
     }
     document.querySelector(".container_photos").innerHTML += `<hr style="width: 100%; margin-bottom: 0">`
-    onResize()
+    setTimeout(() => {
+        onResize()
+    },100)
 }).catch((err) => {
     console.log(err)
 })
@@ -56,7 +58,6 @@ for (let i = 0; i < radios.length; i++) {
     })
 }
 
-onResize()
 
 function onResize(e) {
     if (window.innerWidth < 800) {
@@ -88,7 +89,8 @@ function onResize(e) {
     let productsH3 = document.querySelectorAll(".product h3"),
     productsIMG = document.querySelectorAll(".product img"),
     productsH5 = document.querySelectorAll(".product h5"),
-    maxHeight = 0
+    maxHeight = 0,
+    productsButtons = document.querySelectorAll(".product button")
     console.log(productsH3,productsIMG,productsH5)
     productsH3.forEach((value) => {
         if(value.getBoundingClientRect().height > maxHeight) {
@@ -99,14 +101,25 @@ function onResize(e) {
 
     let maxHeightImg = 0
     productsIMG.forEach((value) => {
+        value.style.top = maxHeight + 50 + "px"
+        value.style.width = value.parentElement.children[0].getBoundingClientRect().width + 'px'
         if(value.getBoundingClientRect().height > maxHeightImg) {
             maxHeightImg = value.getBoundingClientRect().height
         }
-        value.style.top = maxHeight + 30 + "px"
     })
 
     productsH5.forEach((value) => {
-        value.style.top = maxHeight + 30 + maxHeightImg + 20 + "px"
+        value.style.top = maxHeight + 50 + maxHeightImg + 20 + "px"
+        console.log(value.parentElement.children[1].getBoundingClientRect().left)
+        value.style.width = value.parentElement.children[1].getBoundingClientRect().width + "px"
+    })
+
+    productsButtons.forEach((value) => {
+        let child =value.parentElement.children[1].getBoundingClientRect(),
+        imgCenter = child.left + child.width / 2,
+        parent = value.parentElement.getBoundingClientRect()
+        console.log(child)
+        value.style.left = imgCenter - value.getBoundingClientRect().width / 2 - parent.left  + "px"
     })
 
     console.log(maxHeight,maxHeightImg)
@@ -126,3 +139,5 @@ window.addEventListener("scroll", onScroll)
 let str = "abcdef"
 str = str.replaceAt(2, "b")
 console.log(str)
+
+onResize()
