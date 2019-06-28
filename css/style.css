@@ -20,7 +20,7 @@ p {
 }
 
 .navbar {
-    padding: 1rem 2rem;
+    padding: 1rem 1.5rem;
 }
 
 .wrapper {
@@ -45,7 +45,8 @@ img {
 .container_photos {
     display: flex;
     justify-content: center;
-    margin-top: 5rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
     flex-wrap: wrap;
 }
 
@@ -84,7 +85,7 @@ img {
 }
 
 .summary {
-    padding: 2rem 3rem;
+    padding: 1rem 0rem;
 }
 
 .summary h2 {
@@ -136,6 +137,13 @@ img {
     color: lightgray;
 }
 
+.window-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
 .window input {
     border-radius: 5px;
     -webkit-border-radius: 5px;
@@ -168,7 +176,7 @@ img {
 .button {
     padding-left: 2rem;
     padding-right: 2rem;
-    margin-top: 3rem;
+    /* margin-top: 3rem; */
 }
 
 .product {
@@ -177,7 +185,7 @@ img {
     position: relative;
     height: 250px;
     margin-bottom: 10rem;
-    padding: 2rem 4.5rem;
+    padding: 1rem 4.5rem;
     text-transform: uppercase;
 }
 
