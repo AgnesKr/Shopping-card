@@ -60,6 +60,10 @@ for (let i = 0; i < radios.length; i++) {
 
 
 function onResize(e) {
+    if(document.querySelector(".window").style.visibility == "visible") {
+        let windowDiv = document.querySelector(".window")
+        windowDiv.style.left = window.innerWidth / 2 - windowDiv.offsetWidth / 2 +  "px"
+    }
     if (window.innerWidth < 800) {
         let wraps = document.querySelectorAll(".wrap"),
         images = document.querySelectorAll(".image")
@@ -134,7 +138,10 @@ function onResize(e) {
 function onScroll(e) {
     console.log(window.pageYOffset)
     console.log(document.body.clientHeight)
-    
+    if(document.querySelector(".window").style.visibility == "visible") {
+        let windowDiv = document.querySelector(".window")
+        windowDiv.style.top = window.innerHeight / 2 - windowDiv.offsetHeight / 2 - 50 + window.pageYOffset +  "px"
+    }
 }
 
 window.addEventListener("resize", onResize)

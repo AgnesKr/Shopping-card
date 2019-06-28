@@ -3,12 +3,13 @@ function ShoppingCard() {
     this.summary = new Summary()
 
     this.addProduct = function (product) {
+        console.log(product)
         this.products.push({
             ...product,
             numberOfUnits: 1
         }) //id,name,image... + numberOfUnits
         document.querySelector(".tbody").innerHTML +=
-        `
+            `
         <div class="range">
             <div class="column image">
                 <img src="${product.image}"/>
@@ -76,10 +77,10 @@ function ShoppingCard() {
             if (radios[i].checked) {
                 let price = JSON.parse(radios[i].getAttribute("value")).price
                 summary += price
-                document.querySelector(".summary h5").innerHTML = `Delivery - ${price} PLN`
+                document.querySelector(".summary h5").innerHTML = `Delivery - ${Number.isInteger(price) ? price + ".00": price} PLN`
             }
         }
-        document.querySelector(".summary h2").innerHTML = `Total: ${summary} PLN`
+        document.querySelector(".summary h2").innerHTML = `Total: ${Number.isInteger(summary) ? summary + ".00": summary} PLN`
         return summary
     }
 

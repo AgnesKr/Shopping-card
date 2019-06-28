@@ -16,7 +16,7 @@
 <body>
     <div class="wrapper">
         <nav class="navbar navbar-light bg-light">
-            <span class="navbar-brand mb-0 h1" style="font-size: 22px">PHONE SHOP</span>
+            <span class="navbar-brand mb-0 h1" style="font-size: 24px">PHONE SHOP</span>
             <div class="shoppingcard">
                 <p><i class="fas fa-shopping-cart fa-2x"></i><span class="countItems">0</span></p>
             <div>
@@ -37,25 +37,32 @@
             </div>
             <hr />
             <br>
-            <input type="radio" name="delivery" checked value='{"price": 16.99, "days":4}''>
-            <label>InPost - 9,99 PLN</label>
+            <input type="radio" name="delivery" checked value='{"price": 9.99, "days":4}''>
+            <label>InPost - 9.99 PLN</label>
             <br>
-            <input type="radio" name="delivery"  value=' {"price": 9.99, "days" :3}'>
-            <label>Pocztex - 16,99 PLN</label>
+            <input type="radio" name="delivery"  value='{"price": 16.99, "days" :3}'>
+            <label>Pocztex - 16.99 PLN</label>
             <br>
             <input type="radio" name="delivery" value='{"price": 19.99, "days":2}'>
-            <label>DHL - 19,99 PLN</label>
+            <label>DHL - 19.99 PLN</label>
             <br>
-            <input type="radio" name="delivery" value='{"price": 30, "days":2}'>
-            <label>Priority mail - 30,00 PLN</label>
+            <input type="radio" name="delivery" value='{"price": 30.00, "days":2}'>
+            <label>Priority mail - 30.00 PLN</label>
             <div class="summary">
-                <h2>Total: 16,99 PLN</h2>
+                <h2>Total: 9.99 PLN</h2>
                 <hr />
-                <h5>Delivery - 16,99 PLN</h5>
-                <br>
+                <h5>Delivery - 9.99 PLN</h5>
+                
             </div>
             <hr />
-            <button class="confirm">Order</button>
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-2 offset-xs-10 col-sm-2 offset-sm-10">
+                        <button class="confirm button btn btn-primary">Order</button>
+                    </div>
+                </div>
+            </div>
+           
         </div>
         <div>
         </div>
@@ -66,26 +73,26 @@
             </div>
             <div class="window-content">
                 <label>Street</label>
-                <input type="text" name="street">
+                <input type="text" name="street" placeholder="Type street...">
                 <p class="error" name="street"></p>
                 <br />
                 <label>House number</label>
-                <input type="text" name="houseNumber">
+                <input type="text" name="houseNumber" placeholder="Type house number...">
                 <p class="error" name="houseNumber"></p>
                 <br />
                 <label>ZIP code</label>
-                <input type="text" name="zipCode" class="window-content-zipcode" value="__-___">
+                <input type="text" name="zipCode" class="window-content-zipcode" value="__-___" placeholder="Type ZIP code...">
                 <p class="error" name="zipCode" id="window-error-zipcode"></p>
                 <br />
                 <label>Phone</label>
-                <input type="text" name="phone" class="window-content-phone">
+                <input type="text" name="phone" class="window-content-phone" placeholder="Type phone..."> 
                 <p class="error" name="phone" id="window-error-phone"></p>
             </div>
-            <h5 style="position: static">
-           
-            </h5>
-            <button class="window-close">Close</button>
-            <button class="submit">Submit</button>
+            <h5 style="position: static"></h5>
+            <div class="button-panel">
+                <button class="window-close button btn btn-primary">Close</button>
+                <button class="submit button btn btn-primary">Submit</button>
+            </div>
         </div>
         </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>

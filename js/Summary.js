@@ -9,7 +9,7 @@ function Summary() {
             let windowDiv = document.querySelector(".window")
             windowDiv.style.visibility = "visible"
             windowDiv.style.left = window.innerWidth / 2 - windowDiv.offsetWidth / 2 +  "px"
-            windowDiv.style.top = window.innerHeight / 2 - windowDiv.offsetHeight / 2 - 50 + "px"
+            windowDiv.style.top = window.innerHeight / 2 - windowDiv.offsetHeight / 2 - 50 + window.pageYOffset +  "px"
             console.log(document.body.scrollHeight)
             document.querySelector(".dark").style.visibility = "visible"
             document.querySelector(".dark").style.height = document.body.scrollHeight + "px"
