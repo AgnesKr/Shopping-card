@@ -2,10 +2,30 @@ String.prototype.replaceAt = function (index, replacement) {
     return this.substr(0, index) + replacement + this.substr(index + replacement.length);
 }
 
-//"abcdef" -> "abbdef"
-
 let shoppingCard = new ShoppingCard()
 
+axios({
+    url: "http://localhost:3000/products"
+}).then((res) => {
+    for (let i = 0; i < res.data.length; i++) {
+        let {
+            id,
+            image,
+            name,
+            quantity,
+            price,
+            colour,
+            size
+        } = res.data[i]
+        new CardProduct(id, image, name, quantity, price, colour, size)
+    }
+    document.querySelector(".container_photos").innerHTML += `<hr style="width: 100%; margin-bottom: 0">`
+    setTimeout(() => {
+        onResize()
+    }, 100)
+}).catch((err) => {
+    console.log(err)
+})
 
 document.addEventListener("click", function (e) {
     if (e.target && e.target.classList.contains("delete")) {
@@ -13,7 +33,7 @@ document.addEventListener("click", function (e) {
         e.target.parentNode.parentNode.parentNode.parentNode.removeChild(e.target.parentNode.parentNode.parentNode)
     }
 
-    if (e.target && e.target.classList.contains("button")) {
+    if (e.target && e.target.classList.contains("addProduct")) {
         shoppingCard.addProduct(JSON.parse(e.target.getAttribute("product")))
     }
 })
@@ -24,28 +44,86 @@ document.addEventListener("change", function (e) {
     }
 })
 
-//tablica na produkty
-let products = []
+window.addEventListener("resize", onResize)
+window.addEventListener("scroll", onScroll)
 
-//GET -> pobieranie danych,POST -> wysyłania danych,PUT -> modyfikacja danych na serwerze,DELETE -> usuwanie danych na serwerze
-//200 - OK, 4** -> błedy klienta, 5** -> błedy serwera
-axios({
-    url: "http://localhost:3000/products"
-}).then((res) => {
-    console.log(res.data)
-    for (let i = 0; i < res.data.length; i++) {
-        let product = res.data[i]
-        products.push(
-            new CardProduct(product.id, product.image, product.name, product.quantity, product.price, product.colour, product.size)
-        )
+function onResize(e) {
+    let windowDiv = document.querySelector(".window"),
+        wraps = document.querySelectorAll(".wrap")
+    if (windowDiv.style.visibility == "visible") {
+        windowDiv.style.left = window.innerWidth / 2 - windowDiv.offsetWidth / 2 + "px"
     }
-    document.querySelector(".container_photos").innerHTML += `<hr style="width: 100%; margin-bottom: 0">`
-    setTimeout(() => {
-        onResize()
-    },100)
-}).catch((err) => {
-    console.log(err)
-})
+    if (window.innerWidth < 800) {
+        let images = document.querySelectorAll(".image")
+        for (let i = 0; i < wraps.length; i++) {
+            wraps[i].classList.add("set")
+        }
+        for (let i = 0; i < images.length; i++) {
+            images[i].style.width = "50%"
+        }
+
+    } else {
+        let theadElements = document.querySelectorAll(".head .column"),
+            tbodyWidth = document.querySelector(".tbody").getBoundingClientRect().width
+
+        for (let i = 0; i < wraps.length; i++) {
+            wraps[i].classList.remove("set")
+        }
+        for (let i = 0; i < theadElements.length; i++) {
+            theadElements[i].style.width = tbodyWidth / 7 + "px"
+        }
+        let tbodyElements = document.querySelectorAll(".tbody .column")
+        for (let i = 0; i < tbodyElements.length; i++) {
+            tbodyElements[i].style.width = tbodyWidth / 7 + "px"
+        }
+    }
+    let productsH3 = document.querySelectorAll(".product h3"),
+        productsIMG = document.querySelectorAll(".product img"),
+        productsH5 = document.querySelectorAll(".product h5"),
+        maxHeight = 0,
+        productsButtons = document.querySelectorAll(".product button")
+    for (let i = 0; i < productsH3.length; i++) {
+        if (productsH3[i].getBoundingClientRect().height > maxHeight) {
+            maxHeight = productsH3[i].getBoundingClientRect().height
+        }
+
+    }
+
+    let maxHeightImg = 0
+    for (let i = 0; i < productsIMG.length; i++) {
+        productsIMG[i].style.top = maxHeight + 50 + "px"
+        if (window.innerWidth > 600) {
+            productsIMG[i].style.width = productsIMG[i].parentElement.children[0].getBoundingClientRect().width + 'px'
+        } else {
+            productsIMG[i].style.width = "75%"
+        }
+
+        if (productsIMG[i].getBoundingClientRect().height > maxHeightImg) {
+            maxHeightImg = productsIMG[i].getBoundingClientRect().height
+        }
+
+    }
+
+    for (let i = 0; i < productsH5.length; i++) {
+        productsH5[i].style.top = maxHeight + 50 + maxHeightImg + 20 + "px"
+        productsH5[i].style.width = productsH5[i].parentElement.children[1].getBoundingClientRect().width + "px"
+
+    }
+
+    for (let i = 0; i < productsButtons.length; i++) {
+        let child = productsButtons[i].parentElement.children[1].getBoundingClientRect(),
+            imgCenter = child.left + child.width / 2,
+            parent = productsButtons[i].parentElement.getBoundingClientRect()
+        productsButtons[i].style.left = imgCenter - productsButtons[i].getBoundingClientRect().width / 2 - parent.left + "px"
+    }
+}
+
+function onScroll(e) {
+    if (document.querySelector(".window").style.visibility == "visible") {
+        let windowDiv = document.querySelector(".window")
+        windowDiv.style.top = window.innerHeight / 2 - windowDiv.offsetHeight / 2 - 50 + window.pageYOffset + "px"
+    }
+}
 
 document.querySelector(".confirm").addEventListener("click", function (e) {
     shoppingCard.processOrder()
@@ -59,97 +137,7 @@ for (let i = 0; i < radios.length; i++) {
 }
 
 
-function onResize(e) {
-    if(document.querySelector(".window").style.visibility == "visible") {
-        let windowDiv = document.querySelector(".window")
-        windowDiv.style.left = window.innerWidth / 2 - windowDiv.offsetWidth / 2 +  "px"
-    }
-    if (window.innerWidth < 800) {
-        let wraps = document.querySelectorAll(".wrap"),
-        images = document.querySelectorAll(".image")
-        wraps.forEach((value) => {
-            value.classList.add("set")
-        })
-        images.forEach((value) => {
-            value.style.width = "50%"
-        })
-        
-    } else {
-        let theadElements = document.querySelectorAll(".head .column"),
-            wraps = document.querySelectorAll(".wrap"),
-            tbodyWidth = document.querySelector(".tbody").getBoundingClientRect().width
-        wraps.forEach((value) => {
-            value.classList.remove("set")
-        })
-        for (let i = 0; i < theadElements.length; i++) {
-            theadElements[i].style.width = tbodyWidth / 7 + "px"
-        }
-        let tbodyElements = document.querySelectorAll(".tbody .column")
-        console.log(tbodyWidth)
-        for (let i = 0; i < tbodyElements.length; i++) {
-            tbodyElements[i].style.width = tbodyWidth / 7 + "px"
-        }
-    }
-    let productsH3 = document.querySelectorAll(".product h3"),
-    productsIMG = document.querySelectorAll(".product img"),
-    productsH5 = document.querySelectorAll(".product h5"),
-    maxHeight = 0,
-    productsButtons = document.querySelectorAll(".product button")
-    console.log(productsH3,productsIMG,productsH5)
-    productsH3.forEach((value) => {
-        if(value.getBoundingClientRect().height > maxHeight) {
-            maxHeight = value.getBoundingClientRect().height
-        }
-        
-    })
 
-    let maxHeightImg = 0
-    productsIMG.forEach((value) => {
-        value.style.top = maxHeight + 50 + "px"
-        if(window.innerWidth > 600) {
-            value.style.width = value.parentElement.children[0].getBoundingClientRect().width + 'px'
-        } else {
-            value.style.width = "75%"
-        }
-       
-        if(value.getBoundingClientRect().height > maxHeightImg) {
-            maxHeightImg = value.getBoundingClientRect().height
-        }
-    })
 
-    productsH5.forEach((value) => {
-        value.style.top = maxHeight + 50 + maxHeightImg + 20 + "px"
-        console.log(value.parentElement.children[1].getBoundingClientRect().left)
-        value.style.width = value.parentElement.children[1].getBoundingClientRect().width + "px"
-    })
-
-    productsButtons.forEach((value) => {
-        let child =value.parentElement.children[1].getBoundingClientRect(),
-        imgCenter = child.left + child.width / 2,
-        parent = value.parentElement.getBoundingClientRect()
-        console.log(child)
-        value.style.left = imgCenter - value.getBoundingClientRect().width / 2 - parent.left  + "px"
-    })
-
-    console.log(maxHeight,maxHeightImg)
-
-}
-
-function onScroll(e) {
-    console.log(window.pageYOffset)
-    console.log(document.body.clientHeight)
-    if(document.querySelector(".window").style.visibility == "visible") {
-        let windowDiv = document.querySelector(".window")
-        windowDiv.style.top = window.innerHeight / 2 - windowDiv.offsetHeight / 2 - 50 + window.pageYOffset +  "px"
-    }
-}
-
-window.addEventListener("resize", onResize)
-
-window.addEventListener("scroll", onScroll)
-
-let str = "abcdef"
-str = str.replaceAt(2, "b")
-console.log(str)
 
 onResize()

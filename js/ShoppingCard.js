@@ -3,11 +3,10 @@ function ShoppingCard() {
     this.summary = new Summary()
 
     this.addProduct = function (product) {
-        console.log(product)
         this.products.push({
             ...product,
             numberOfUnits: 1
-        }) //id,name,image... + numberOfUnits
+        })
         document.querySelector(".tbody").innerHTML +=
             `
         <div class="range">
@@ -42,27 +41,19 @@ function ShoppingCard() {
     }
 
     this.removeProduct = function (id) {
-        console.log(this.products)
         this.products = this.products.filter((value, index) => {
-            console.log(value.id, id)
             return value.id != id
         })
-        setTimeout(() => {
-            console.log(this.products)
-        }, 1000)
-
         document.querySelector(".countItems").innerHTML = this.products.length
         this.createSummary()
     }
 
     this.modifyQuantity = function (id, numberOfUnits) {
-        console.log(id, numberOfUnits)
         for (let i = 0; i < this.products.length; i++) {
             if (this.products[i].id == id) {
                 this.products[i].numberOfUnits = parseInt(numberOfUnits)
             }
         }
-        console.log(this.products)
         this.createSummary()
     }
 
@@ -91,15 +82,10 @@ function ShoppingCard() {
         let transactionDate = `${date.getFullYear()}-${date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1): date.getMonth() + 1 }-${date.getDate() < 10 ? "0" + date.getDate(): date.getDate()}`
         let radios = document.querySelectorAll("[name=delivery]")
         for (let i = 0; i < radios.length; i++) {
-            console.log(radios[i])
             if (radios[i].checked) {
                 delivery.setDate(date.getDate() + JSON.parse(radios[i].getAttribute("value")).days)
             }
         }
-        //["niedziela","poniedziałek","wtorek",..]
-        //date -> data wcześniejsza
-        //delivery -> data dostarczenia
-        //date < delivery -> true
         let diff = 0
         for (let i = date; i <= delivery; i.setDate(i.getDate() + 1)) {
             if (i.getDay() == 0 || i.getDay() == 6) {

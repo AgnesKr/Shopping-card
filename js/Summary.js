@@ -10,7 +10,6 @@ function Summary() {
             windowDiv.style.visibility = "visible"
             windowDiv.style.left = window.innerWidth / 2 - windowDiv.offsetWidth / 2 +  "px"
             windowDiv.style.top = window.innerHeight / 2 - windowDiv.offsetHeight / 2 - 50 + window.pageYOffset +  "px"
-            console.log(document.body.scrollHeight)
             document.querySelector(".dark").style.visibility = "visible"
             document.querySelector(".dark").style.height = document.body.scrollHeight + "px"
             document.querySelector(".window h5").innerHTML = "Delivery date " + deliveryDate
@@ -35,7 +34,6 @@ function Summary() {
                     for(let i = 0; i < this.zipCode.length; i++) {
                         if(this.zipCode[i] == "_") {
                             this.zipCode = this.zipCode.replaceAt(i,e.key)
-                            console.log(this.zipCode[i])
                             break
                         }
                     }
@@ -62,7 +60,6 @@ function Summary() {
                 
                 for(let i = 0; i < input.value.length; i++) {
                     if(i == 0 || input.value[i] != "_" && input.value[i] != "-") {
-                        console.log(input.value[i])
                         input.selectionStart = i + 1
                         input.selectionEnd = i + 1
                     }
@@ -80,9 +77,7 @@ function Summary() {
                     this.phoneNumber += e.key
                 } else if(e.key == "Backspace"){
                     let input = document.querySelector(".window-content-phone")
-                    console.log(input.selectionStart,input.selectionEnd)
                     this.phoneNumber = this.phoneNumber.substr(0,this.phoneNumber.length - 1)
-                    console.log(this.phoneNumber)
                 }
 
                 if(this.phoneNumber.length > 9) {
@@ -136,7 +131,6 @@ function Summary() {
 
 function close() {
     let inputs = document.querySelectorAll(".window input")
-    console.log(inputs)
     for(let i = 0; i < inputs.length; i++) {
         inputs[i].value = ""
     }

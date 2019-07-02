@@ -85,7 +85,7 @@ img {
 }
 
 .summary {
-    padding: 1rem 0rem;
+    padding: 2rem 0 0 0;
 }
 
 .summary h2 {
@@ -152,6 +152,8 @@ img {
     -o-border-radius: 5px;
     border: 1px solid lightgray;
     padding: 0.2rem 1rem;
+    width: 50%;
+    min-width: 300px;
 }
 
 .window input:last-of-type {
@@ -176,7 +178,6 @@ img {
 .button {
     padding-left: 2rem;
     padding-right: 2rem;
-    /* margin-top: 3rem; */
 }
 
 .product {
@@ -213,15 +214,9 @@ h5 {
     bottom: -140px;
 }
 
-/* @media screen and (min-width: 1200px) {
-    .product {
-        padding: 1rem 2rem;
-    }
-} */
-
 @media screen and (max-width: 800px) {
     .head {
-        visibility: hidden;
+        display: none;
     }
 
     .image img {

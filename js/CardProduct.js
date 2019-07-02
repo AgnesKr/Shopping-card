@@ -29,7 +29,7 @@ function CardProduct(id, image, name, quantity, price, colour, size) {
         <h3>${name}</h3>
         <img src="${image}" />
         <h5><span style="margin-right: 10px">${pre}</span>${after} PLN</h5>
-        <button class="button btn btn-primary" product='{"name": "${name}","price": "${this.price}", "image":"${image}", "colour": "${colour}", "size": "${size}", "id": "${id}", "quantity": "${quantity}"}'>Add</button>
+        <button class="button addProduct btn btn-primary" product='{"name": "${name}","price": "${this.price}", "image":"${image}", "colour": "${colour}", "size": "${size}", "id": "${id}", "quantity": "${quantity}"}'>Add</button>
     </div>
     `
 }
